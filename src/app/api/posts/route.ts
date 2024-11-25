@@ -1,5 +1,3 @@
-import { type NextRequest } from 'next/server'
-
 export interface Post {
     id: string;
     title: string;
@@ -38,9 +36,9 @@ let CACHED_POSTS: PostsResponse = {
     total_pages: 0
 };
 
-let lastSyncDate = new Date(0);
+//let lastSyncDate = new Date(0);
 
-export async function GET(request: NextRequest) {
+export async function GET() {
 
     // if (lastSyncDate && (new Date().getTime() - lastSyncDate.getTime()) < 24 * 60 * 60 * 1000) {
     //     return new Response(JSON.stringify(CACHED_POSTS), {
@@ -63,7 +61,7 @@ export async function GET(request: NextRequest) {
     const data = await response.json() as PostsResponse;
     if (response.ok && data.data.length > 0 && CACHED_POSTS.total_results !== data.total_results) {
         CACHED_POSTS = data;
-        lastSyncDate = new Date();
+        //lastSyncDate = new Date();
     }
     return new Response(JSON.stringify(data), {
         status: response.status,
