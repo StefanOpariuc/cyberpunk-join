@@ -3,11 +3,11 @@ import { type NextRequest } from 'next/server'
 export async function POST(request: NextRequest) {
 
     const API_KEY = process.env.API_KEY
-    console.log("USED API KEY", API_KEY)
+    const PUBLICATION_ID = process.env.PUBLICATION_ID
     const body = await request.json();
-    const email = body.email;
 
-    const response = await fetch('https://api.beehiiv.com/v2/publications/pub_7c251de2-85f0-4639-bd67-6eea8527d881/subscriptions', {
+
+    const response = await fetch(`https://api.beehiiv.com/v2/publications/${PUBLICATION_ID}/subscriptions`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

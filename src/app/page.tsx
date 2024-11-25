@@ -4,33 +4,31 @@ import { useToast } from "@/components/use-toast";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/card";
 import { Toaster } from "@/components/toaster";
 import { Toaster as Sonner } from "@/components/sonner";
+import { Post } from "./api/posts/route";
 
-const articles = [
-  {
-    title: "The Rise of Quantum Computing",
-    preview: "Discover how quantum computers are revolutionizing cryptography and data security in the digital age.",
-    date: "2024-02-15"
-  },
-  {
-    title: "Neural Networks: The Next Frontier",
-    preview: "Exploring the latest breakthroughs in artificial intelligence and their impact on society.",
-    date: "2024-02-14"
-  },
-  {
-    title: "Cybersecurity in 2024",
-    preview: "Stay ahead of emerging threats with our comprehensive analysis of current cybersecurity trends.",
-    date: "2024-02-13"
-  },
-  {
-    title: "The Future of Digital Currency",
-    preview: "Understanding the evolution of cryptocurrency and its role in shaping the future of finance.",
-    date: "2024-02-12"
-  }
-];
 
 const Index = () => {
   const [email, setEmail] = useState("");
+  const [posts, setPosts] = useState<Post[]>([]);
   const { toast } = useToast();
+
+  useEffect(() => {
+    fetch("/api/posts")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setPosts(data.data);
+        console.log("Fetched posts:", data);
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch request:", error);
+      });
+
+  }, []);
 
   const isEmailValid = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -52,8 +50,7 @@ const Index = () => {
         }
         return response.json();
       })
-      .then((data) => {
-        console.log("Subscription successful:", data);
+      .then(() => {
         if (email) {
           toast({
             title: "Successfully subscribed!",
@@ -66,8 +63,6 @@ const Index = () => {
       .catch((error) => {
         console.error("There was a problem with the subscription request:", error);
       });
-
-
   };
 
   return (
@@ -105,16 +100,24 @@ const Index = () => {
 
             <div className="w-full max-w-7xl px-4 mb-16">
               <h2 className="text-2xl font-bold mb-8 text-white">Latest Articles</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {articles.map((article, index) => (
-                  <Card key={index} className="bg-black/50 border-white/30 hover:scale-105 transition-transform duration-300">
-                    <CardHeader>
-                      <CardTitle className="text-white text-xl">{article.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-white/80 mb-4">{article.preview}</p>
-                      <p className="text-white/60 text-sm">{article.date}</p>
-                    </CardContent>
+              <div className="grid justify-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {posts?.map((article, index) => (
+                  <Card key={index} className="flex flex-col bg-black/50 border-white/30 hover:scale-105  cursor-pointer transition-transform duration-300">
+                    <a href={article.web_url} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
+                      <CardHeader className="flex ">
+                        <CardTitle className="text-white text-xl">{article.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent className="flex flex-col justify-between">
+                        <div className="flex mb-4">
+                          <img src={article.thumbnail_url} />
+                        </div>
+                        <p className="text-white/80 mb-4">{new Date(article.publish_date * 1000).toLocaleDateString("en-GB", {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                        })}</p>
+                      </CardContent>
+                    </a>
                   </Card>
                 ))}
               </div>
