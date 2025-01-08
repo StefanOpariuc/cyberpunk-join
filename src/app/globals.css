@@ -29,7 +29,7 @@
   }
 
   body {
-    @apply bg-black text-white font-cyber overflow-x-hidden;
+    @apply bg-black text-white font-nebula overflow-x-hidden;
   }
 }
 
@@ -91,6 +91,11 @@
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
+}
+
+@font-face {
+  font-family: 'Nebula';
+  src: url(/fonts/Nebula-Regular.otf);
 }
 
 .card {

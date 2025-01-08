@@ -70,62 +70,38 @@ const Index = () => {
       <Toaster />
       <Sonner />
       <div className="min-h-screen">
-        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-4 pt-40">
-          <div className="flex flex-col items-center w-full">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-12 tracking-wider text-white">
-              CyberpunkCapital
-            </h1>
-
-            <form onSubmit={handleSubmit} className="w-full max-w-md mb-16">
-              <div className="relative">
-                <input
-                  type="text"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  className="w-full px-6 py-4 rounded-lg bg-black/50 border border-white/30 text-white text-lg placeholder:text-white/50 focus:border-white/70 transition-colors"
-                  required
-                />
-                <button
-                  type="submit"
-                  disabled={!isEmailValid()}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-2 rounded-md
-                         border border-white/30 bg-black/50 text-white hover:bg-white
-                         hover:text-black hover:disabled:text-white hover:disabled:bg-black transition-colors duration-300"
-                >
-                  Join
-                </button>
-              </div>
-            </form>
-
-            <div className="w-full max-w-7xl px-4 mb-16">
-              <h2 className="text-2xl font-bold mb-8 text-white">Latest Articles</h2>
-              <div className="grid justify-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {posts?.map((article, index) => (
-                  <Card key={index} className="flex flex-col bg-black/50 border-white/30 hover:scale-105  cursor-pointer transition-transform duration-300">
-                    <a href={article.web_url} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
-                      <CardHeader className="flex ">
-                        <CardTitle className="text-white text-xl">{article.title}</CardTitle>
-                      </CardHeader>
-                      <CardContent className="flex flex-col justify-between">
-                        <div className="flex mb-4">
-                          <img src={article.thumbnail_url} />
-                        </div>
-                        <p className="text-white/80 mb-4">{new Date(article.publish_date * 1000).toLocaleDateString("en-GB", {
-                          day: "2-digit",
-                          month: "2-digit",
-                          year: "numeric",
-                        })}</p>
-                      </CardContent>
-                    </a>
-                  </Card>
-                ))}
-              </div>
-            </div>
+        <div className="flex w-full flex-row justify-between pt-[50px] md:pl-[174px] md:pr-[174px] pl-[16px] pr-[16px]">
+          <div className="text-center text-white text-xl font-normal font-nebula leading-normal">Cyberpunk<br />Capital</div>
+          <div className="px-5 py-2.5 bg-green rounded-[45px] justify-center items-center gap-2.5 flex">
+            <div className="text-center text-[#022811] text-base font-semibold font-sans leading-snug">Join Now</div>
           </div>
+        </div>
+
+
+        <div className="flex flex-col items-center md:pt-[80px] gap-2">
+          <p className="text-center text-green text-base uppercase items-stretch">
+            Locul in care cunostintele tale despre crypto se transforma in profit
+          </p>
+          <div className="flex flex-col items-center">
+            <p className="text-center text-6xl font-normal font-nebula bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+              Portalul tau catre
+            </p>
+            <p className="text-center text-6xl font-normal font-nebula bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+              Independenta
+            </p>
+            <p className="text-center text-6xl font-normal font-nebula bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+              financiara
+            </p>
+          </div>
+          <p className="text-white/60 text-base font-normal font-sans">
+            Comunitatea in care traderii invata, acceseaza cele mai bune strategii si castiga impreuna.
+          </p>
+
+        </div>
+        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-4 pt-40">
 
           {/* Social Media Links moved to bottom */}
-          <footer className="flex flex-wrap justify-center mt-auto bottom-30 items-center gap-8 pb-8">
+          <footer className="flex flex-wrap justify-center mt-auto items-center gap-[42px]">
             <a
               href="https://patreon.com/cyberpunkcap"
               target="_blank"

@@ -17,7 +17,7 @@ export default {
     extend: {
       colors: {
         matrix: {
-          green: "#00ff00",
+          green: "#06E55F",
           dark: "#001a00",
           light: "#00ff9d",
         },
@@ -73,8 +73,18 @@ export default {
         glitch: "glitch 0.5s ease-in-out infinite",
       },
       fontFamily: {
-        cyber: ["Share Tech Mono", "monospace"],
+        nebula: ["Nebula", "nebula"],
+        sans: ["Open Sans", "sans"],
+
       },
+      textColor: {
+        green: '#06E55F'
+      },
+      backgroundColor:
+      {
+        green: '#06E55F'
+      },
+
     },
   },
   plugins: [],
