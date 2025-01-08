@@ -27,9 +27,18 @@
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
   }
+  ::-webkit-scrollbar{
+    display:none
+  }
 
   body {
-    @apply bg-black text-white font-nebula overflow-x-hidden;
+    @apply bg-black text-white font-nebula;
+    background-image: url(/images/bg.svg);
+    height: 100vsh;
+    background-position: center;
+    background-size:cover;
+    background-repeat: repeat;
+    overflow-y: scroll;
   }
 }
 
@@ -96,6 +105,18 @@
 @font-face {
   font-family: 'Nebula';
   src: url(/fonts/Nebula-Regular.otf);
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url(/fonts/OpenSans-Regular.woff);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url(/fonts/OpenSans-Bold.woff);
+  font-weight: 700;
 }
 
 .card {

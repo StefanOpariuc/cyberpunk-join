@@ -75,10 +75,19 @@ export default {
       fontFamily: {
         nebula: ["Nebula", "nebula"],
         sans: ["Open Sans", "sans"],
-
       },
       textColor: {
         green: '#06E55F'
+      },
+      fontSize: {
+        xl: ['20px', '24px'],
+        xxl: ['32px', '100%'],
+        m: ['16px', '100%'],
+        l: ['18px', '100%'],
+        sm: ['12px', '100%'],
+      },
+      fontWeight: {
+        bold: '700',
       },
       backgroundColor:
       {
